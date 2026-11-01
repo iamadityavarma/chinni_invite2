@@ -2,11 +2,12 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { TurmericReveal } from "@/components/turmeric-reveal";
 import cover from "@/assets/cover.jpg";
-import card from "@/assets/wedding-invitation.jpeg.asset.json";
-import names from "@/assets/family-invitation.jpeg.asset.json";
-import events from "@/assets/events-schedule.jpeg.asset.json";
-import m1 from "@/assets/mangalasnanam.jpeg.asset.json";
-import m2 from "@/assets/pellikoduku.jpeg.asset.json";
+import weddingAudio from "@/assets/wedding audio.mpeg";
+import card from "@/assets/wedding-invitation.jpeg";
+import names from "@/assets/family-invitation.jpeg";
+import events from "@/assets/events-schedule.jpeg";
+import m1 from "@/assets/mangalasnanam.jpeg";
+import m2 from "@/assets/pellikoduku.jpeg";
 import m3 from "@/assets/m3.jpg";
 import m4 from "@/assets/m4.jpg";
 
@@ -40,12 +41,12 @@ type Ev = { key: string; img: string; btnClass: string; inkClass: string; textTo
 
 const EVENTS: Ev[] = [
   {
-    key: "m1", img: m1.url, btnClass: "btn-amber", inkClass: "ink-amber", textTop: "17%",
+    key: "m1", img: m1, btnClass: "btn-amber", inkClass: "ink-amber", textTop: "17%",
     lines: [],
     buttons: [{ label: "📅 Save Date", href: cal("Aditya's Mangalasnanam", "20261211T073000", "20261211T093000", SOARING) }],
   },
   {
-    key: "m2", img: m2.url, btnClass: "btn-green", inkClass: "ink-green", textTop: "28%",
+    key: "m2", img: m2, btnClass: "btn-green", inkClass: "ink-green", textTop: "28%",
     lines: [],
     buttons: [{ label: "📅 Save Date", href: cal("Aditya's Pellikoduku Ceremony", "20261211T103000", "20261211T123000", SOARING) }],
   },
@@ -151,7 +152,7 @@ function Index() {
         <div className="cover-half cover-left"><img src={cover} alt="AV monogram" width={864} height={1536} /></div>
         <div className="cover-half cover-right"><img src={cover} alt="" width={864} height={1536} /></div>
         <div className="cover-ui absolute inset-0" style={{ pointerEvents: open ? "none" : "auto" }}>
-          <button aria-label="Open invitation" className="medallion-btn" onClick={() => setOpen(true)} />
+          <button aria-label="Open invitation" className="medallion-btn" onClick={() => { setOpen(true); new Audio(weddingAudio).play(); }} />
           <p className="hint blink absolute inset-x-0 bottom-10">✦ Tap to open ✦</p>
         </div>
       </div>
@@ -160,14 +161,14 @@ function Index() {
       <Reveal cls="rv-left">
         <section className="relative">
           <h1 className="sr-only">Aditya & Vineetha — Wedding Invitation</h1>
-          <img src={card.url} alt="Wedding invitation with temple, banana leaves, and floral decorations" width={1080} height={1920} className="block w-full" />
+          <img src={card} alt="Wedding invitation with temple, banana leaves, and floral decorations" width={1080} height={1920} className="block w-full" />
         </section>
       </Reveal>
 
       {/* Names */}
       <Reveal cls="rv-up">
         <section className="relative">
-          <img src={names.url} alt="Together with their families, Aditya Varma and Vineetha Thrinethri invite you to their wedding" loading="lazy" width={1080} height={1920} className="block w-full" />
+          <img src={names} alt="Together with their families, Aditya Varma and Vineetha Thrinethri invite you to their wedding" loading="lazy" width={1080} height={1920} className="block w-full" />
         </section>
       </Reveal>
 
@@ -175,7 +176,7 @@ function Index() {
       <Reveal cls="rv-scale">
         <section className="pb-10">
           <div className="float relative">
-            <img src={events.url} alt="Events schedule with garlands, mandala pattern and wedding illustrations" loading="lazy" width={1080} height={1920} className="block w-full" />
+            <img src={events} alt="Events schedule with garlands, mandala pattern and wedding illustrations" loading="lazy" width={1080} height={1920} className="block w-full" />
             {HUB.map((h, i) => (
               <button
                 key={i}
